@@ -1,0 +1,66 @@
+def book_word_frequency(s):
+    with open(s, 'r', errors = 'ignore') as f:
+        text = f.read()
+        text = text.lower()
+        text = text.replace("\n", " ")
+        text = text.replace('mr.', 'mr')
+        text = text.replace('dr.', 'dr')
+        text = text.replace('mrs.', 'mrs')
+        text = text.replace('?', '.')
+        text = text.replace('!', '.')
+        text = text.replace('-', '')
+        text = text.replace('(', '')
+        text = text.replace(')', '')
+        text = text.replace(',', '')
+        text = text.replace('[', '')
+        text = text.replace(']', '')
+        text = text.replace(':', '')
+        text = text.replace(';', '')
+        text = text.replace("'s", '')
+        text = text.replace('"', '')
+        print(text)
+    words = text.split(" ")
+    sentences = text.split(".")
+    # print(sentences)
+
+    f_pos = open('C:/Users/xavie/Desktop/PositiveSentimentWords.txt', 'r')
+    f_neg = open('C:/Users/xavie/Desktop/NegativeSentimentWords.txt', 'r')
+    positive = f_pos.read()
+    negative = f_neg.read()
+    L_positive = positive.split('\n')
+    L_negative = negative.split('\n')
+    L_negative.pop()
+    L_positive.pop()
+    # print(L_positive)
+    # print(negative)
+    Positive_total = 0
+    Negative_total = 0
+    Neutral_total = 0
+
+    for sentence in sentences:
+        Positive = 0
+        Negative = 0
+        words = sentence.split(' ')
+        for word in words:
+            if word in L_positive:
+                Positive = Positive + 1
+            elif word in L_negative:
+                Negative = Negative + 1
+        if Positive > Negative:
+            Positive_total += 1
+        elif Positive < Negative:
+            Negative_total += 1
+        else:
+            Neutral_total += 1
+    Total = Positive_total + Negative_total + Neutral_total
+
+    print("Postive: ", Positive_total)
+    print("Negative: ", Negative_total)
+    print("Neutral: ", Neutral_total)
+    print("Total: ", Total)
+
+
+def main():
+    book_word_frequency('C:/Users/xavie/Desktop/thehoundofthebaskervilles.txt')
+
+main()
