@@ -18,21 +18,17 @@ def book_word_frequency(s):
         text = text.replace(';', '')
         text = text.replace("'s", '')
         text = text.replace('"', '')
-        print(text)
+
     words = text.split(" ")
     sentences = text.split(".")
-    # print(sentences)
 
-    f_pos = open('C:/Users/xavie/Desktop/PositiveSentimentWords.txt', 'r')
-    f_neg = open('C:/Users/xavie/Desktop/NegativeSentimentWords.txt', 'r')
+    f_pos = open('C:/Users/xavie/.PyCharmCE2019.1/config/scratches/poswords.txt', 'r')
+    f_neg = open('C:/Users/xavie/.PyCharmCE2019.1/config/scratches/negwords.txt', 'r')
     positive = f_pos.read()
     negative = f_neg.read()
     L_positive = positive.split('\n')
     L_negative = negative.split('\n')
-    L_negative.pop()
-    L_positive.pop()
-    # print(L_positive)
-    # print(negative)
+
     Positive_total = 0
     Negative_total = 0
     Neutral_total = 0
@@ -61,6 +57,5 @@ def book_word_frequency(s):
 
 
 def main():
-    book_word_frequency('C:/Users/xavie/Desktop/thehoundofthebaskervilles.txt')
-
+    book_word_frequency('C:/Users/xavie/.PyCharmCE2019.1/config/scratches/thehoundofthebaskervilles.txt')
 main()
